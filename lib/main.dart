@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:product_showcase/repos/product_details_repo.dart';
 
 import 'cubit/product_cubit.dart';
 import 'repos/product_repo.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => ProductCubit(
         ProductRepo(),
+        ProductDetailsRepo(),
       ),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

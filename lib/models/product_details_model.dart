@@ -1,77 +1,34 @@
-class ProductModel {
-  ProductModel({
+class ProductDetailsModel {
+  ProductDetailsModel({
     required this.status,
+    required this.statusCode,
     required this.data,
+    required this.error,
   });
   late final String status;
+  late final int statusCode;
   late final Data data;
+  late final String error;
 
-  ProductModel.fromJson(Map<String, dynamic> json) {
+  ProductDetailsModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
+    statusCode = json['statusCode'];
     data = Data.fromJson(json['data']);
+    error = json['error'];
   }
 
   Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['status'] = status;
-    data['data'] = this.data.toJson();
-    return data;
+    final _data = <String, dynamic>{};
+    _data['status'] = status;
+    _data['statusCode'] = statusCode;
+    _data['data'] = data.toJson();
+    _data['error'] = error;
+    return _data;
   }
 }
 
 class Data {
   Data({
-    required this.categories,
-    required this.products,
-  });
-  late final List<dynamic> categories;
-  late final Products products;
-
-  Data.fromJson(Map<String, dynamic> json) {
-    categories = List.castFrom<dynamic, dynamic>(json['categories']);
-    products = Products.fromJson(json['products']);
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['categories'] = categories;
-    data['products'] = products.toJson();
-    return data;
-  }
-}
-
-class Products {
-  Products({
-    required this.count,
-    required this.next,
-    required this.previous,
-    required this.results,
-  });
-  late final int count;
-  late final String next;
-  late final String previous;
-  late final List<Results> results;
-
-  Products.fromJson(Map<String, dynamic> json) {
-    count = json['count'];
-    next = json['next'];
-    previous = json['previous'];
-    results =
-        List.from(json['results']).map((e) => Results.fromJson(e)).toList();
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['count'] = count;
-    data['next'] = next;
-    data['previous'] = previous;
-    data['results'] = results.map((e) => e.toJson()).toList();
-    return data;
-  }
-}
-
-class Results {
-  Results({
     required this.id,
     required this.brand,
     required this.image,
@@ -150,7 +107,7 @@ class Results {
   late final List<dynamic> filterValue;
   late final List<dynamic> distributors;
 
-  Results.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     brand = Brand.fromJson(json['brand']);
     image = json['image'];
@@ -192,46 +149,46 @@ class Results {
   }
 
   Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['id'] = id;
-    data['brand'] = brand.toJson();
-    data['image'] = image;
-    data['charge'] = charge.toJson();
-    data['images'] = images.map((e) => e.toJson()).toList();
-    data['slug'] = slug;
-    data['product_name'] = productName;
-    data['model'] = model;
-    data['commission_type'] = commissionType;
-    data['amount'] = amount;
-    data['tag'] = tag;
-    data['description'] = description;
-    data['note'] = note;
-    data['embadded_video_link'] = embaddedVideoLink;
-    data['maximum_order'] = maximumOrder;
-    data['stock'] = stock;
-    data['is_back_order'] = isBackOrder;
-    data['specification'] = specification;
-    data['warranty'] = warranty;
-    data['pre_order'] = preOrder;
-    data['product_review'] = productReview;
-    data['is_seller'] = isSeller;
-    data['is_phone'] = isPhone;
-    data['will_show_emi'] = willShowEmi;
-    data['badge'] = badge;
-    data['is_active'] = isActive;
-    data['sack_equivalent'] = sackEquivalent;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    data['language'] = language;
-    data['seller'] = seller;
-    data['combo'] = combo;
-    data['created_by'] = createdBy;
-    data['updated_by'] = updatedBy;
-    data['category'] = category;
-    data['related_product'] = relatedProduct;
-    data['filter_value'] = filterValue;
-    data['distributors'] = distributors;
-    return data;
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['brand'] = brand.toJson();
+    _data['image'] = image;
+    _data['charge'] = charge.toJson();
+    _data['images'] = images.map((e) => e.toJson()).toList();
+    _data['slug'] = slug;
+    _data['product_name'] = productName;
+    _data['model'] = model;
+    _data['commission_type'] = commissionType;
+    _data['amount'] = amount;
+    _data['tag'] = tag;
+    _data['description'] = description;
+    _data['note'] = note;
+    _data['embadded_video_link'] = embaddedVideoLink;
+    _data['maximum_order'] = maximumOrder;
+    _data['stock'] = stock;
+    _data['is_back_order'] = isBackOrder;
+    _data['specification'] = specification;
+    _data['warranty'] = warranty;
+    _data['pre_order'] = preOrder;
+    _data['product_review'] = productReview;
+    _data['is_seller'] = isSeller;
+    _data['is_phone'] = isPhone;
+    _data['will_show_emi'] = willShowEmi;
+    _data['badge'] = badge;
+    _data['is_active'] = isActive;
+    _data['sack_equivalent'] = sackEquivalent;
+    _data['created_at'] = createdAt;
+    _data['updated_at'] = updatedAt;
+    _data['language'] = language;
+    _data['seller'] = seller;
+    _data['combo'] = combo;
+    _data['created_by'] = createdBy;
+    _data['updated_by'] = updatedBy;
+    _data['category'] = category;
+    _data['related_product'] = relatedProduct;
+    _data['filter_value'] = filterValue;
+    _data['distributors'] = distributors;
+    return _data;
   }
 }
 
@@ -255,12 +212,12 @@ class Brand {
   }
 
   Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['name'] = name;
-    data['image'] = image;
-    data['header_image'] = headerImage;
-    data['slug'] = slug;
-    return data;
+    final _data = <String, dynamic>{};
+    _data['name'] = name;
+    _data['image'] = image;
+    _data['header_image'] = headerImage;
+    _data['slug'] = slug;
+    return _data;
   }
 }
 
@@ -281,11 +238,11 @@ class Charge {
     required this.campaignSection,
     this.message,
   });
-  late final double bookingPrice;
-  late final double currentCharge;
+  late final int bookingPrice;
+  late final int currentCharge;
   late final Null discountCharge;
-  late final double sellingPrice;
-  late final double profit;
+  late final int sellingPrice;
+  late final int profit;
   late final bool isEvent;
   late final Null eventId;
   late final bool highlight;
@@ -314,22 +271,22 @@ class Charge {
   }
 
   Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['booking_price'] = bookingPrice;
-    data['current_charge'] = currentCharge;
-    data['discount_charge'] = discountCharge;
-    data['selling_price'] = sellingPrice;
-    data['profit'] = profit;
-    data['is_event'] = isEvent;
-    data['event_id'] = eventId;
-    data['highlight'] = highlight;
-    data['highlight_id'] = highlightId;
-    data['groupping'] = groupping;
-    data['groupping_id'] = grouppingId;
-    data['campaign_section_id'] = campaignSectionId;
-    data['campaign_section'] = campaignSection;
-    data['message'] = message;
-    return data;
+    final _data = <String, dynamic>{};
+    _data['booking_price'] = bookingPrice;
+    _data['current_charge'] = currentCharge;
+    _data['discount_charge'] = discountCharge;
+    _data['selling_price'] = sellingPrice;
+    _data['profit'] = profit;
+    _data['is_event'] = isEvent;
+    _data['event_id'] = eventId;
+    _data['highlight'] = highlight;
+    _data['highlight_id'] = highlightId;
+    _data['groupping'] = groupping;
+    _data['groupping_id'] = grouppingId;
+    _data['campaign_section_id'] = campaignSectionId;
+    _data['campaign_section'] = campaignSection;
+    _data['message'] = message;
+    return _data;
   }
 }
 
@@ -353,11 +310,11 @@ class Images {
   }
 
   Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['id'] = id;
-    data['image'] = image;
-    data['is_primary'] = isPrimary;
-    data['product'] = product;
-    return data;
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['image'] = image;
+    _data['is_primary'] = isPrimary;
+    _data['product'] = product;
+    return _data;
   }
 }

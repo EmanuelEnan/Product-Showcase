@@ -14,7 +14,20 @@ class ErrorProductInitial extends ProductState {
 }
 
 class ResponseProductInitial extends ProductState {
-  final ProductModel productModel;
+  final List<ProductModel> productModel;
 
   ResponseProductInitial({required this.productModel});
+}
+
+class ResponseDetailsInitial extends ProductState {
+  final ProductDetailsModel detailsModel;
+
+  ResponseDetailsInitial({required this.detailsModel});
+}
+
+class LoadedProductInitial extends ProductState {
+  final List<ProductModel> oldProductModel;
+  final bool isFirstFetch;
+
+  LoadedProductInitial(this.oldProductModel, {this.isFirstFetch = false});
 }
